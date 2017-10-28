@@ -48,6 +48,6 @@ export const getVisibleTodos = (state, filter) => {
                 t => !t.completed
             );
         default:
-            return allTodos;
+            return new Error(`Unknown filter: ${filter}.`);
     }
 }

@@ -4,10 +4,20 @@ import { createStore } from 'redux';
 import { Provider }  from 'react-redux';
 
 import TodoApp from './todoApp/app';
-import todos from './reducer/todoApp';
+import todoApp from './reducer';
+
+const persistedState = /* ... */;
+// {
+//     todos: [{
+//         id: '0',
+//         text: 'Welcome back!',
+//         completed: false,
+//     }],
+// };
 
 const store = createStore(
-    todos,
+    todoApp,
+    persistedState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

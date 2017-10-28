@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -25,10 +26,10 @@ const getVisibileTodos = (
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, { match: { params } }) => ({
     todos: getVisibileTodos(
         state.todos,
-        ownProps.filter
+        params.filter || 'all'
     )
 });
 
@@ -38,9 +39,9 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-const VisibleTodoList = connect(
+const VisibleTodoList = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(TodoList);
+)(TodoList));
 
 export default VisibleTodoList;

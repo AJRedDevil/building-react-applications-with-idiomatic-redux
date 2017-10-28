@@ -6,14 +6,11 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions';
 import TodoList from './todoList';
 import { getVisibleTodos } from '../reducers';
-import { fetchTodos } from '../api';
 
 class VisibleTodoList extends Component {
     
     componentDidMount() {
-        fetchTodos(this.props.filter).then(todos =>
-            this.fetchData()
-        );
+        this.fetchData();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -23,10 +20,8 @@ class VisibleTodoList extends Component {
     }
 
     fetchData() {
-        const { filter, receiveTodos } = this.props;
-        fetchTodos(filter).then(todos =>
-            receiveTodos(filter, todos)
-        );
+        const { filter, fetchTodos } = this.props;
+        fetchTodos(filter);
     }
     
     render() {

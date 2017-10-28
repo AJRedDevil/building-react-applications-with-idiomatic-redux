@@ -5,30 +5,11 @@ import PropTypes from 'prop-types';
 
 import { toggleTodo } from '../actions';
 import TodoList from './todoList';
-
-const getVisibileTodos = (
-    todos,
-    filter
-) => {
-    switch (filter) {
-        case 'all':
-            return todos;
-        case 'completed':
-            return  todos.filter(
-                t => t.completed
-            );
-        case 'active':
-            return todos.filter(
-                t => !t.completed
-            );
-        default:
-            return todos;
-    }
-}
+import { getVisibleTodos } from '../reducers';
 
 const mapStateToProps = (state, { match: { params } }) => ({
-    todos: getVisibileTodos(
-        state.todos,
+    todos: getVisibleTodos(
+        state,
         params.filter || 'all'
     )
 });

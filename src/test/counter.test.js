@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import { counter } from '../reducer/counter';
+import { counter } from '../reducers/counter';
 
 describe('test counter reducer', () => {
     it('should increment and decrement appropiately', () => {

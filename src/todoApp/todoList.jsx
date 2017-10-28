@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Todo from './todo';
-
-const toggleTodo = (id) => {
-    return {
-        type: 'TOGGLE_TODO',
-        id
-    };
-};
+import { toggleTodo } from '../action';
 
 const TodoList = ({
     todos,
@@ -45,22 +39,18 @@ const getVisibileTodos = (
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        todos: getVisibileTodos(
-            state.todos,
-            state.visibilityFilter
-        )
-    };
-};
+const mapStateToProps = (state) => ({
+    todos: getVisibileTodos(
+        state.todos,
+        state.visibilityFilter
+    )
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onTodoClick: id => {
-            dispatch(toggleTodo(id));
-        }
-    };
-};
+const mapDispatchToProps = (dispatch) => ({
+    onTodoClick(id) {
+        dispatch(toggleTodo(id));
+    }
+});
 
 const VisibleTodoList = connect(
     mapStateToProps,

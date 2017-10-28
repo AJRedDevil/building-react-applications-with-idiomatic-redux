@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Todo from './todo';
 import { toggleTodo } from '../actions';
@@ -18,6 +19,10 @@ const TodoList = ({
         )}
     </ul>
 );
+TodoList.propTypes = {
+    todos: PropTypes.arrayOf( PropTypes.object ).isRequired,
+    onTodoClick: PropTypes.func.isRequired,
+};
 
 const getVisibileTodos = (
     todos,

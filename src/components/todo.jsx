@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Presentational Component
 const Todo = ({
@@ -18,5 +19,10 @@ const Todo = ({
         {text}
     </li>
 );
+Todo.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired
+};
 
 export default Todo;

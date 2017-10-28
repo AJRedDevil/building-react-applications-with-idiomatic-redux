@@ -1,51 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
-import { setVisibilityFilter } from '../actions';
-
-const Link = ({
-    active,
-    onClick,
-    children
-}) => {
-    if (active) {
-        return <span>{children}</span>;
-    }
-    
-    return (
-        <a
-            href='#'
-            onClick={e => {
-                e.preventDefault();
-                onClick();
-            }}
-        >
-            {children}
-        </a>
-    );
+const FilterLink = ({ filter, children }) => (
+    <NavLink
+        exact
+        to={filter === 'all' ? '/' : `/${ filter }`}
+        activeStyle={{
+            textDecoration: 'none',
+            color: 'black',
+        }}
+    >
+        {children}
+    </NavLink>
+);
+FilterLink.propTypes = {
+    filter: PropTypes.string.isRequired,
+    children: PropTypes.string.isRequired
 };
-
-const mapStateToProps = (
-    state,
-    ownProps
-) => ({
-    active:
-        ownProps.filter ===
-        state.visibilityFilter
-});
-
-const mapDispatchToProps = (
-    dispatch,
-    ownProps
-) => ({
-    onClick() {
-        dispatch(setVisibilityFilter(ownProps.filter));
-    },
-});
-
-const FilterLink = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Link);
 
 export default FilterLink;

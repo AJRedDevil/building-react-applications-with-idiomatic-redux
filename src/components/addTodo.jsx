@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { addTodo } from '../actions';
 
@@ -18,6 +19,9 @@ let AddTodo = ({ dispatch }) => {
             </button>
         </div>
     );
+};
+AddTodo.propTypes = {
+    dispatch: PropTypes.func.isRequired,
 };
 
 AddTodo = connect()(AddTodo);

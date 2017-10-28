@@ -1,13 +1,15 @@
 import React  from 'react';
 
 import AddTodo from './addTodo';
-import VisibleTodoList from './todoList';
+import VisibleTodoList from './VisibilityTodoList';
 import Footer from './footer';
 
-const TodoApp = () => (
+const TodoApp = ({ match : { params } }) => (
     <div>
         <AddTodo />
-        <VisibleTodoList />
+        <VisibleTodoList
+            filter={params.filter || 'all'}
+        />
         <Footer />
     </div>
 );
